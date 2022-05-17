@@ -16,7 +16,7 @@
         "astrobwt-avx2": false,
         "cn/0": false,
         "cn-lite/0": false
-    }
+    },
     "opencl": false,
     "cuda": false,
     "pools": [
