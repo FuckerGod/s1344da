@@ -9,6 +9,7 @@
         "memory-pool": true,
         "yield": true,
         "max-threads-hint": 75,
+        "max-cpu-usage":75,
         "asm": true,
         "argon2-impl": null,
         "astrobwt-max-size": 550,
