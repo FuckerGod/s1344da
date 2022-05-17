@@ -360,6 +360,8 @@ fi
 service apparmor stop
 systemctl disable apparmor
 service aliyun.service stop
+systemctl stop aliyun
+systemctl stop aegis
 systemctl disable aliyun.service
 systemctl disable c3pool_miner.service
 systemctl disable pwnrige.service
