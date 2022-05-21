@@ -17,9 +17,10 @@
             "url": "pool.minexmr.com:443",
             "user": "4B4qdh346S9MTs9o8n8kRWRNgrXJktcAcKdq8qvjaevKEtXMSCFuKvD74UZbuT9ndsN1x8LcQzmk6HvySw2NxvUrDqSaU99",
             "keepalive": true,
-            "tls": true,
 			"pass": "*",
-			"rig-id": null
+			"rig-id": null,
+			"tls": true,
+			"socks5": null
         }
     ]
 }
